@@ -1,0 +1,21 @@
+{
+  "name": "hello-kotlin-web",
+  "version": "1.0.0",
+  "author": "Mike Mitterer <office@mikemitterer.at>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "devDependencies": {
+    "@jetbrains/kotlin-webpack-plugin": "^1.2.10",
+    "html-beautify-webpack-plugin": "^1.0.5",
+    "html-webpack-plugin": "3.2.0",
+    "html-loader": "^0.5.5",
+    "kotlin": "1.2.71",
+    "source-map-loader": "^0.2.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "3.1.9",
+    "webpack-livereload-plugin": "^2.1.1"
+  }
+}

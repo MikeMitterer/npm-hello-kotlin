@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# IDEA
+.idea/
+out/
+classes/
+*.iml
+
+# Gradle
+.gradle/
+build/
+
+# Node
+/node_modules
+package-lock.json
+
+# Kotlin
+/kotlin_build
+    
+/dist
