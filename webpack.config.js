@@ -19,14 +19,14 @@ const devServerConfig = {
 module.exports = {
     mode: process.env.NODE_ENV || 'development',
     
-    devServer: devServerConfig,
+    //devServer: devServerConfig,
+    
     entry: 'kotlinApp',
+    resolve: {
+        modules: ['kotlin_build', 'node_modules']
+    },
     module: {
         rules: [
-            {
-                test: /\.pug$/,
-                use: 'pug-loader'
-            },
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, '../kotlin_build'),
@@ -38,12 +38,10 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        modules: ['kotlin_build', 'node_modules']
-    },
     output: {
+        publicPath: '',
         path: path.resolve(__dirname, 'build'),
-        filename: 'js/build.js'
+        filename: 'build.js'
     },
     // any "source-map"-like devtool is possible
     // More: https://webpack.js.org/configuration/devtool/
@@ -52,7 +50,10 @@ module.exports = {
     plugins: [
         new KotlinWebpackPlugin({
             src: path.resolve(__dirname, 'src/kt'),
-            verbose: true
+            verbose: true,
+            optimize: true,
+            librariesAutoLookup: true,
+            packagesContents: [require(path.resolve(__dirname, 'package.json'))],
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
