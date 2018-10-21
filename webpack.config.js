@@ -4,7 +4,7 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const path = require('path');
-
+const webpack = require ('webpack');
 
 const devMode = (process.env.NODE_ENV !== 'production');
 
@@ -46,14 +46,19 @@ module.exports = {
     // any "source-map"-like devtool is possible
     // More: https://webpack.js.org/configuration/devtool/
     devtool: "inline-source-map",
-    
+
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new KotlinWebpackPlugin({
             src: path.resolve(__dirname, 'src/kt'),
             verbose: true,
             optimize: true,
+            metaInfo: true,                                   // Include .meta.js files
+            sourceMaps: true,                                 // Include Source mappings
             librariesAutoLookup: true,
-            packagesContents: [require(path.resolve(__dirname, 'package.json'))],
+            packagesContents: [
+                require(path.resolve(__dirname, 'package.json'))
+            ],
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -76,5 +81,13 @@ module.exports = {
             replace: [' type="text/javascript"']
         }),
         new LiveReloadPlugin(),
-    ]
+    ],
+
+    devServer: {
+        port: 8080,
+        disableHostCheck: true,
+
+        historyApiFallback: true,
+        hot: true,
+    }
 };

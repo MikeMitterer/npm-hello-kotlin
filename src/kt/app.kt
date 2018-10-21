@@ -7,6 +7,6 @@ class Name(firstname: String, lastname: String)
 fun main(args: Array<String>) {
     val appElement = document.getElementById("app")
 
-    println("Mike3")
-    appElement?.textContent = "Servus Kotlin!!Q21"
+    println("Mike5")
+    appElement?.textContent = "Servus Kotlin!!Q34"
 }

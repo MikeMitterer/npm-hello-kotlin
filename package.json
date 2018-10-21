@@ -4,7 +4,7 @@
   "author": "Mike Mitterer <office@mikemitterer.at>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --mode development  --progress --watch-poll --open"
+    "start": "NODE_ENV=development webpack-dev-server --mode development  --progress --watch-poll"
   },
   "devDependencies": {
     "@jetbrains/kotlin-webpack-plugin": "^1.2.10",
