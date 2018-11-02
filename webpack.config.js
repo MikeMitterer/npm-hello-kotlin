@@ -20,7 +20,9 @@ module.exports = {
     mode: process.env.NODE_ENV || 'development',
     
     //devServer: devServerConfig,
-    
+
+    // Gradle:
+    // entry: 'starter',
     entry: 'kotlinApp',
     resolve: {
         modules: ['kotlin_build', 'node_modules']
@@ -29,6 +31,8 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                // Gradle
+                // include: path.resolve(__dirname, 'build/kotlin2js'),
                 include: path.resolve(__dirname, '../kotlin_build'),
                 exclude: [
                     /kotlin\.js$/ // Kotlin runtime doesn't have sourcemaps at the moment
@@ -49,17 +53,17 @@ module.exports = {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new KotlinWebpackPlugin({
-            src: path.resolve(__dirname, 'src/kt'),
-            verbose: true,
-            optimize: true,
-            metaInfo: true,                                   // Include .meta.js files
-            sourceMaps: true,                                 // Include Source mappings
-            librariesAutoLookup: true,
-            packagesContents: [
-                require(path.resolve(__dirname, 'package.json'))
-            ],
-        }),
+        // new KotlinWebpackPlugin({
+        //     src: path.resolve(__dirname, 'src/main/kotlin'),
+        //     verbose: true,
+        //     optimize: false,
+        //     metaInfo: false,                                   // Include .meta.js files
+        //     sourceMaps: true,                                 // Include Source mappings
+        //     librariesAutoLookup: true,
+        //     packagesContents: [
+        //         require(path.resolve(__dirname, 'package.json'))
+        //     ],
+        // }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
 
