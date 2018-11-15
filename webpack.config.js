@@ -52,18 +52,20 @@ module.exports = {
     devtool: "inline-source-map",
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        // new KotlinWebpackPlugin({
-        //     src: path.resolve(__dirname, 'src/main/kotlin'),
-        //     verbose: true,
-        //     optimize: false,
-        //     metaInfo: false,                                   // Include .meta.js files
-        //     sourceMaps: true,                                 // Include Source mappings
-        //     librariesAutoLookup: true,
-        //     packagesContents: [
-        //         require(path.resolve(__dirname, 'package.json'))
-        //     ],
-        // }),
+        //new webpack.HotModuleReplacementPlugin(),
+        
+        new KotlinWebpackPlugin({
+            src: path.resolve(__dirname, 'src/main/kotlin'),
+            verbose: true,
+            optimize: false,
+            metaInfo: false,                                   // Include .meta.js files
+            sourceMaps: true,                                 // Include Source mappings
+            librariesAutoLookup: true,
+            optimizeDeadCode: false,
+            packagesContents: [
+                require(path.resolve(__dirname, 'package.json'))
+            ],
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
 
@@ -92,6 +94,6 @@ module.exports = {
         disableHostCheck: true,
 
         historyApiFallback: true,
-        hot: true,
+        //  hot: true,
     }
 };
